@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paresh Parmar | Founder & CEO, Apex Web Infotech</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #05080f;
+    --bg2: #0d1117;
+    --bg3: #161c27;
+    --accent: #0ea5e9;
+    --accent2: #38bdf8;
+    --accent3: #6366f1;
+    --accent4: #10b981;
+    --gold: #f59e0b;
+    --text: #e8f4fd;
+    --muted: #7a8fa6;
+    --border: rgba(14,165,233,0.15);
+    --card: rgba(255,255,255,0.03);
+    --radius: 16px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(5,8,15,0.9); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+  .nav-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--accent3)); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem; color: #fff; }
+  .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent2); }
+  .nav-cta { background: var(--accent); color: #fff; padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+  .nav-cta:hover { background: #0284c7; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 6rem 3rem 3rem; position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(14,165,233,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(99,102,241,0.06) 0%, transparent 70%);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; width: 100%; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(14,165,233,0.1); border: 1px solid rgba(14,165,233,0.25);
+    color: var(--accent2); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.5px;
+    padding: 0.4rem 1rem; border-radius: 999px; margin-bottom: 1.2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent4); animation: pulse 2s infinite; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800; line-height: 1.08; letter-spacing: -2px; margin-bottom: 0.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 .name-highlight { color: var(--accent2); display: block; }
+  .hero-title { font-size: 1rem; color: var(--accent); font-weight: 500; margin-bottom: 1.2rem; letter-spacing: 0.5px; animation: fadeUp 0.7s 0.15s ease both; }
+  .hero-desc { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 480px; margin-bottom: 2rem; animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.25s ease both; }
+  .btn { padding: 0.75rem 1.8rem; border-radius: 999px; font-size: 0.92rem; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #0284c7; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,0.3); }
+  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 2rem;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
+  .hero-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.2rem; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+  .hero-stat { background: rgba(14,165,233,0.06); border: 1px solid rgba(14,165,233,0.12); border-radius: 12px; padding: 0.9rem; text-align: center; }
+  .hero-stat-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--accent2); }
+  .hero-stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+  .hero-social { display: flex; gap: 0.6rem; margin-top: 1.2rem; flex-wrap: wrap; }
+  .social-link { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 999px; transition: all 0.2s; }
+  .social-link:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* SECTIONS */
+  section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 3rem; }
+  .section-title span { color: var(--muted); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+  .about-left { }
+  .about-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
+  .about-card-label { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+  .about-card-val { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; }
+  .about-text { color: var(--muted); font-size: 0.97rem; line-height: 1.85; }
+  .about-text p + p { margin-top: 1rem; }
+  .about-highlight { background: linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.06)); border: 1px solid rgba(14,165,233,0.15); border-radius: 12px; padding: 1.2rem 1.5rem; margin-top: 1.5rem; }
+  .about-highlight p { color: var(--text); font-size: 0.95rem; font-style: italic; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .service-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.8rem;
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transform: scaleX(0); transition: transform 0.25s; transform-origin: left;
+  }
+  .service-card:hover { border-color: rgba(14,165,233,0.3); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(14,165,233,0.1); border: 1px solid rgba(14,165,233,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; }
+  .service-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .service-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.7; }
+
+  /* EXPERTISE / SOLUTIONS */
+  .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
+  .solution-item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 0.9rem 1rem; display: flex; align-items: center; gap: 0.7rem;
+    transition: all 0.2s; font-size: 0.85rem;
+  }
+  .solution-item:hover { border-color: rgba(14,165,233,0.3); color: var(--accent2); }
+  .solution-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* TECH STACK */
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
+  .tech-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.2rem; text-align: center; transition: all 0.2s;
+  }
+  .tech-card:hover { border-color: rgba(99,102,241,0.4); transform: translateY(-2px); }
+  .tech-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .tech-name { font-size: 0.82rem; font-weight: 500; color: var(--muted); }
+
+  /* ACHIEVEMENTS */
+  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .achievement-card {
+    background: linear-gradient(135deg, rgba(14,165,233,0.07), rgba(99,102,241,0.05));
+    border: 1px solid rgba(14,165,233,0.15); border-radius: var(--radius);
+    padding: 2rem; text-align: center;
+  }
+  .achievement-num { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--accent2); line-height: 1; }
+  .achievement-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; }
+
+  /* WHY CHOOSE */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .why-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: rgba(16,185,129,0.3); }
+  .why-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .why-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .why-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-box {
+    background: linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.06));
+    border: 1px solid rgba(14,165,233,0.2); border-radius: 24px; padding: 3.5rem; text-align: center;
+  }
+  .contact-box h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.8rem; }
+  .contact-box p { color: var(--muted); margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .contact-item {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem; text-align: center;
+  }
+  .contact-item-label { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+  .contact-item-val { font-size: 0.88rem; font-weight: 500; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--card); border: 1px solid var(--border); color: var(--text);
+    text-decoration: none; padding: 0.65rem 1.4rem; border-radius: 999px; font-size: 0.88rem; transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent2); color: var(--accent2); }
+  .contact-link.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .contact-link.primary:hover { background: #0284c7; }
+
+  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-box { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">PP</div>
+    <div class="nav-logo-text">Paresh Parmar</div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#tech">Tech Stack</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Founder & CEO · Apex Web Infotech
+      </div>
+      <h1>Paresh<span class="name-highlight">Parmar</span></h1>
+      <div class="hero-title">Entrepreneur · Software Architect · Tech Visionary</div>
+      <p class="hero-desc">Building transformative software solutions for cooperative societies, financial institutions, and enterprises across India since 2015. Trusted by 500+ clients in Gujarat and beyond.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Connect with me</a>
+        <a href="https://apexwebinfotech.net" target="_blank" class="btn btn-outline">Visit Company ↗</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-avatar">PP</div>
+      <h3>Paresh Parmar</h3>
+      <p>Founder & CEO, Apex Web Infotech<br>Ahmedabad, Gujarat, India</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">10+</div>
+          <div class="hero-stat-label">Years in industry</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">Happy clients</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">2015</div>
+          <div class="hero-stat-label">Founded</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">15+</div>
+          <div class="hero-stat-label">Solutions built</div>
+        </div>
+      </div>
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/paresh-parmar-9991aa100" target="_blank" class="social-link">&#128188; LinkedIn</a>
+        <a href="https://twitter.com/ApexParesh" target="_blank" class="social-link">&#120143; Twitter</a>
+        <a href="https://www.facebook.com/apexwebinfotech" target="_blank" class="social-link">&#128100; Facebook</a>
+        <a href="https://apexwebinfotech.net" target="_blank" class="social-link">&#127760; Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="about-card">
+        <div class="about-card-label">Company</div>
+        <div class="about-card-val">Apex Web Infotech</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Role</div>
+        <div class="about-card-val">Founder & CEO</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Founded</div>
+        <div class="about-card-val">2015</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Location</div>
+        <div class="about-card-val">Chandkheda, Ahmedabad</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Specialization</div>
+        <div class="about-card-val">Cooperative Society Software & Web/Mobile Development</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">About me</div>
+      <div class="section-title">A decade of <span>building software</span> that matters</div>
+      <div class="about-text">
+        <p>In 2015, with a vision to transform the landscape of financial cooperation and empower communities, Paresh Parmar founded Apex Web Infotech. What began as a humble startup has grown into one of Gujarat's most trusted software companies.</p>
+        <p>With over 10 years of experience in software development and entrepreneurship, Paresh leads a team of passionate developers building cutting-edge solutions for cooperative credit societies, financial institutions, and businesses across India.</p>
+        <p>His expertise spans web development, mobile applications, and enterprise software — with a deep specialization in cooperative society management systems trusted by 500+ clients across Gujarat and India.</p>
+      </div>
+      <div class="about-highlight">
+        <p>"Our mission is to pioneer digital transformation through innovative web and mobile development — uniting technology and purpose to empower businesses and communities."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section>
+  <div class="section-label">Impact & milestones</div>
+  <div class="section-title">Numbers that <span>speak for themselves</span></div>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="achievement-num">500+</div>
+      <div class="achievement-label">Clients across Gujarat & India</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-num">10+</div>
+      <div class="achievement-label">Years of industry experience</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-num">15+</div>
+      <div class="achievement-label">Software solutions delivered</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-num">2015</div>
+      <div class="achievement-label">Year Apex Web Infotech was founded</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What we offer</div>
+  <div class="section-title">Core <span>Services</span></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">&#127970;</div>
+      <div class="service-title">Cooperative Society Software</div>
+      <div class="service-desc">Comprehensive software for cooperative credit societies — covering member management, loan processing, financial reporting, savings, FD, and more. Trusted by 500+ societies.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127760;</div>
+      <div class="service-title">Web Development</div>
+      <div class="service-desc">Dynamic, scalable web applications built with ASP.NET Core and Angular — from e-commerce platforms to enterprise management systems, designed for performance and growth.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128241;</div>
+      <div class="service-title">Mobile App Development</div>
+      <div class="service-desc">Cutting-edge mobile applications using Flutter, delivering seamless experiences on Android and iOS. Also specializing in agent mobile apps for cooperative societies.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127873;</div>
+      <div class="service-title">eCommerce Solutions</div>
+      <div class="service-desc">Full-featured eCommerce platforms built for Indian businesses — with payment gateways, inventory management, and scalable architecture.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128202;</div>
+      <div class="service-title">Accounting & Financial Software</div>
+      <div class="service-desc">General ledger, income/expenditure tracking, balance sheets, and P&L accounts with export to Excel, Word, and PDF in both Gujarati and English.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128101;</div>
+      <div class="service-title">IT Consulting</div>
+      <div class="service-desc">End-to-end technology consulting for businesses — from requirements gathering and architecture design to deployment and ongoing maintenance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solutions">
+  <div class="section-label">Domain expertise</div>
+  <div class="section-title">Software <span>Solutions Portfolio</span></div>
+  <div class="solutions-grid">
+    <div class="solution-item"><span class="solution-dot"></span>Co-operative Credit Society</div>
+    <div class="solution-item"><span class="solution-dot"></span>Employees Society (Mandali)</div>
+    <div class="solution-item"><span class="solution-dot"></span>Multi State Credit Society</div>
+    <div class="solution-item"><span class="solution-dot"></span>Multi Branch Credit Society</div>
+    <div class="solution-item"><span class="solution-dot"></span>Online Core Banking System</div>
+    <div class="solution-item"><span class="solution-dot"></span>NBFC Software</div>
+    <div class="solution-item"><span class="solution-dot"></span>Producer Company</div>
+    <div class="solution-item"><span class="solution-dot"></span>Teacher's Cooperative Society</div>
+    <div class="solution-item"><span class="solution-dot"></span>MLM Agent System</div>
+    <div class="solution-item"><span class="solution-dot"></span>Jewellery Shop Software</div>
+    <div class="solution-item"><span class="solution-dot"></span>SHG & JLG</div>
+    <div class="solution-item"><span class="solution-dot"></span>Housing Society Software</div>
+    <div class="solution-item"><span class="solution-dot"></span>Society Website</div>
+    <div class="solution-item"><span class="solution-dot"></span>Agent Mobile Application</div>
+    <div class="solution-item"><span class="solution-dot"></span>Mitra Mandal</div>
+    <div class="solution-item"><span class="solution-dot"></span>Supply Society Software</div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="section-label">Technologies we use</div>
+  <div class="section-title">Tech <span>Stack</span></div>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="tech-icon">&#9881;&#65039;</div><div class="tech-name">ASP.NET Core</div></div>
+    <div class="tech-card"><div class="tech-icon">&#9654;&#65039;</div><div class="tech-name">Angular</div></div>
+    <div class="tech-card"><div class="tech-icon">&#128640;</div><div class="tech-name">React</div></div>
+    <div class="tech-card"><div class="tech-icon">&#127757;</div><div class="tech-name">Node.js</div></div>
+    <div class="tech-card"><div class="tech-icon">&#128241;</div><div class="tech-name">Flutter</div></div>
+    <div class="tech-card"><div class="tech-icon">&#128202;</div><div class="tech-name">SQL Server</div></div>
+    <div class="tech-card"><div class="tech-icon">&#9729;&#65039;</div><div class="tech-name">Cloud</div></div>
+    <div class="tech-card"><div class="tech-icon">&#128737;&#65039;</div><div class="tech-name">Security</div></div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section>
+  <div class="section-label">Why work with us</div>
+  <div class="section-title">What sets <span>Apex apart</span></div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">&#127942;</div>
+      <div class="why-title">Deep Domain Expertise</div>
+      <div class="why-desc">10+ years of specialized experience in cooperative society software — no one understands this domain better in Gujarat.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128161;</div>
+      <div class="why-title">Continuous Innovation</div>
+      <div class="why-desc">We stay ahead of the curve by leveraging the latest technologies and trends to provide innovative solutions that drive growth.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128591;</div>
+      <div class="why-title">Customer-First Approach</div>
+      <div class="why-desc">500+ satisfied clients across India speak for our unwavering commitment to customer satisfaction and long-term partnerships.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128737;&#65039;</div>
+      <div class="why-title">Security & Trust</div>
+      <div class="why-desc">Security is at the core of every solution we build — protecting sensitive financial data for hundreds of cooperative societies.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#127881;</div>
+      <div class="why-title">Bilingual Support</div>
+      <div class="why-desc">Software and reports available in both Gujarati and English — truly built for the local market with global standards.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128200;</div>
+      <div class="why-title">Scalable Architecture</div>
+      <div class="why-desc">Future-ready solutions designed to grow with your business — from single-branch societies to multi-state operations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <h2>Let's build something great</h2>
+    <p>Looking for reliable software for your cooperative society or business? Get in touch with Paresh and the Apex Web Infotech team today.</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-val">+91 79908 63913</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-val">apexwebinfotech@gmail.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Office</div>
+        <div class="contact-item-val">B-403/404/405, Gokul Pratham, Chandkheda, Ahmedabad</div>
+      </div>
+    </div>
+    <div class="contact-links">
+      <a href="tel:+917990863913" class="contact-link primary">&#128222; Call Now</a>
+      <a href="mailto:apexwebinfotech@gmail.com" class="contact-link">&#9993;&#65039; Send Email</a>
+      <a href="https://www.linkedin.com/in/paresh-parmar-9991aa100" target="_blank" class="contact-link">&#128188; LinkedIn</a>
+      <a href="https://apexwebinfotech.net" target="_blank" class="contact-link">&#127760; Website</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Paresh Parmar · Founder & CEO, Apex Web Infotech &copy; 2025 · Ahmedabad, Gujarat, India</p>
+</footer>
+
+</body>
+</html>
